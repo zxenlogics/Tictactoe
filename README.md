@@ -1,4 +1,4 @@
-# Tictactoe
+# Tic Tac Toe
 My Nodejs implementation of the game Tic Tac Toe
 
 ##Purpose
