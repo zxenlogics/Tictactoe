@@ -1,13 +1,27 @@
 import { Board } from "./board";
+const prompt = require('prompt');
 
-//var brd = require('./js/board.js');
+let pos: string;
+let player: string;
+ let b = new Board();
 
-//var b = brd();
+function getAnother() {
+    prompt.get(['position', 'player'], (err, result) => {
+       
 
-//var http = require("http");
+        if(err) {
+            done();
+        }
+        else {
+            console.log(`You entered ${result.position} for player ${result.player}`);
+             b.click(result.position, result.player);
+        }
+    });    
+}
 
-//var server = http.createServer();
-
+function done() {
+    console.log('Done');
+}
 
 
 
@@ -17,7 +31,11 @@ import { Board } from "./board";
 // Listen via Express
 //app.listen(3000);
 //console.log('Listening on port 3000 via Express. Access via http://localhost:3000');
-let b = new Board();
+
+
 
 b.init();
-b.click('A1', '1');
+prompt.start();
+getAnother();
+
+

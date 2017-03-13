@@ -50,14 +50,14 @@ var Board = (function () {
         console.log("Game Over! Player  ");
     };
     Board.prototype.drawBoard = function () {
-        var a1 = 'X';
+        var p = this.positions;
         console.log('                     A   B   C');
         console.log('\n');
-        console.log("                1    " + a1 + " |   |  ");
+        console.log("                1    " + p[0] + " | " + p[1] + "  | " + p[2] + " ");
         console.log('                     ---------');
-        console.log('                2      |   |  ');
+        console.log("                2    " + p[3] + " | " + p[4] + "  | " + p[5] + " ");
         console.log('                     ---------');
-        console.log('                3      |   |  ');
+        console.log("                2    " + p[6] + " | " + p[7] + "  | " + p[8] + " ");
         console.log('\n');
     };
     Board.prototype.resetBoard = function () {
