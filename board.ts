@@ -1,7 +1,7 @@
 
 class Board {
     numberOfPlayer: number = 2;
-    winner: number = -1;
+    winner: number = 1;
     positionsFilled: number = 0;
     positions: string[] = ['-1', '-1', '-1',
                            '-1', '-1', '-1',
@@ -24,18 +24,18 @@ class Board {
         console.log('Resetting Board..');
 
         for(var i = 0; i < 9; i++) {
-           this.positions[i] = '';
+           this.positions[i] = ' ';
         }
     }
 
     updateBoard = (pos: string, player: number) => {
 
-        if(!this.isValidInput(pos, player))
+        if(!this.isValidInput(pos.toLocaleUpperCase(), player))
         {
             return;
         }
 
-        let idx = this.mapping[pos];
+        let idx = this.mapping[pos.toUpperCase()];
         this.positions[idx] = this.playerBadge[player];
         this.positionsFilled++;
 
@@ -47,7 +47,7 @@ class Board {
     }
 
     private isValidInput(pos: string, player: number) : boolean {
-        let isValid = false;
+        let isValid = true;
 
         if(!this.mapping[pos] == null) {            
             console.log(`Illegal Play position ${pos}`);
@@ -81,24 +81,24 @@ class Board {
         let p = this.positions;
         
 
-        console.log('                     A   B   C');
+        console.log('                     1   2   3');
         console.log('\n');
-        console.log(`                1    ${p[0]} | ${p[1]}  | ${p[2]} `);
-        console.log('                     ---------');
-        console.log(`                2    ${p[3]} | ${p[4]}  | ${p[5]} `);
-        console.log('                     ---------');
-        console.log(`                2    ${p[6]} | ${p[7]}  | ${p[8]} `);
+        console.log(`                A    ${p[0]} | ${p[1]} | ${p[2]} `);
+        console.log('                     ------------');
+        console.log(`                B    ${p[3]} | ${p[4]} | ${p[5]} `);
+        console.log('                     ------------');
+        console.log(`                C    ${p[6]} | ${p[7]} | ${p[8]} `);
         console.log('\n');
     }
 
     private resetBoard() {       
-        console.log('                     A   B   C');
+        console.log('                     1   2   3');
         console.log('\n');
-        console.log(`                1      |   |  `);
+        console.log(`                A      |   |  `);
         console.log('                     ---------');
-        console.log('                2      |   |  ');
+        console.log('                B      |   |  ');
         console.log('                     ---------');
-        console.log('                3      |   |  ');
+        console.log('                C      |   |  ');
         console.log('\n');
     }    
     

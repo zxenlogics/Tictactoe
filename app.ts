@@ -8,8 +8,8 @@ let b = new Board();
 let promptProperties = [
     {
         name: 'position',
-        validator: /^[a-zA-Z\s\-]+$/,
-        warning: 'Invalid play position input'
+        //validator: /^[a-zA-Z\s\-]+$/,
+        //warning: 'Invalid play position input'
     },
     {
         name: 'player',
@@ -49,7 +49,7 @@ function onErr(err) {
 
 
 b.init();
-while(!b.isGameOver()){}
+//while(!b.isGameOver()){}
 
     prompt.start();
     getAnother();

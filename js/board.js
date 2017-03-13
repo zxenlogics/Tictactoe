@@ -18,14 +18,14 @@ var Board = (function () {
         this.reset = function () {
             console.log('Resetting Board..');
             for (var i = 0; i < 9; i++) {
-                _this.positions[i] = '';
+                _this.positions[i] = ' ';
             }
         };
         this.updateBoard = function (pos, player) {
-            if (!_this.isValidInput(pos, player)) {
+            if (!_this.isValidInput(pos.toLocaleUpperCase(), player)) {
                 return;
             }
-            var idx = _this.mapping[pos];
+            var idx = _this.mapping[pos.toUpperCase()];
             _this.positions[idx] = _this.playerBadge[player];
             _this.positionsFilled++;
             if (_this.isGameOver()) {
@@ -39,7 +39,7 @@ var Board = (function () {
         this.reset();
     };
     Board.prototype.isValidInput = function (pos, player) {
-        var isValid = false;
+        var isValid = true;
         if (!this.mapping[pos] == null) {
             console.log("Illegal Play position " + pos);
             isValid = false;
@@ -61,23 +61,23 @@ var Board = (function () {
     };
     Board.prototype.drawBoard = function () {
         var p = this.positions;
-        console.log('                     A   B   C');
+        console.log('                     1   2   3');
         console.log('\n');
-        console.log("                1    " + p[0] + " | " + p[1] + "  | " + p[2] + " ");
-        console.log('                     ---------');
-        console.log("                2    " + p[3] + " | " + p[4] + "  | " + p[5] + " ");
-        console.log('                     ---------');
-        console.log("                2    " + p[6] + " | " + p[7] + "  | " + p[8] + " ");
+        console.log("                A    " + p[0] + " | " + p[1] + "  | " + p[2] + " ");
+        console.log('                     ------------');
+        console.log("                B    " + p[3] + " | " + p[4] + "  | " + p[5] + " ");
+        console.log('                     ------------');
+        console.log("                C    " + p[6] + " | " + p[7] + "  | " + p[8] + " ");
         console.log('\n');
     };
     Board.prototype.resetBoard = function () {
-        console.log('                     A   B   C');
+        console.log('                     1   2   3');
         console.log('\n');
-        console.log("                1      |   |  ");
+        console.log("                A      |   |  ");
         console.log('                     ---------');
-        console.log('                2      |   |  ');
+        console.log('                B      |   |  ');
         console.log('                     ---------');
-        console.log('                3      |   |  ');
+        console.log('                C      |   |  ');
         console.log('\n');
     };
     return Board;
