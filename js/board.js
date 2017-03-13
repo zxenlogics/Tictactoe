@@ -5,6 +5,7 @@ var Board = (function () {
         var _this = this;
         this.numberOfPlayer = 2;
         this.winner = -1;
+        this.positionsFilled = 0;
         this.positions = ['-1', '-1', '-1',
             '-1', '-1', '-1',
             '-1', '-1', '-1',];
@@ -13,24 +14,21 @@ var Board = (function () {
             'B1': 3, 'B2': 4, 'B3': 5,
             'C1': 6, 'C2': 7, 'C3': 8,
         };
+        this.playerBadge = { 1: 'X', 2: 'O' };
         this.reset = function () {
-            console.log('Reset Board');
+            console.log('Resetting Board..');
             for (var i = 0; i < 9; i++) {
                 _this.positions[i] = '';
             }
         };
-        this.click = function (pos, player) {
-            if (!_this.mapping[pos] == null) {
-                console.log("Illegal Play position " + pos);
-                return;
-            }
-            if (player !== '1' && player !== '2') {
-                console.log("Invalid Player " + player);
+        this.updateBoard = function (pos, player) {
+            if (!_this.isValidInput(pos, player)) {
                 return;
             }
             var idx = _this.mapping[pos];
-            _this.positions[idx] = player;
-            if (_this.isGameOver(pos, player)) {
+            _this.positions[idx] = _this.playerBadge[player];
+            _this.positionsFilled++;
+            if (_this.isGameOver()) {
                 _this.endGame();
             }
             _this.drawBoard();
@@ -40,8 +38,20 @@ var Board = (function () {
         this.resetBoard();
         this.reset();
     };
-    Board.prototype.isGameOver = function (pos, player) {
-        return false;
+    Board.prototype.isValidInput = function (pos, player) {
+        var isValid = false;
+        if (!this.mapping[pos] == null) {
+            console.log("Illegal Play position " + pos);
+            isValid = false;
+        }
+        if (player < 1 && player > 2) {
+            console.log("Invalid Player " + player + ". Please enter 1 or 1");
+            isValid = false;
+        }
+        return isValid;
+    };
+    Board.prototype.isGameOver = function () {
+        return this.positionsFilled == 9;
     };
     Board.prototype.getWinner = function () {
         return this.winner;

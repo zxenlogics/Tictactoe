@@ -12,7 +12,7 @@ function getAnother() {
         }
         else {
             console.log("You entered " + result.position + " for player " + result.player);
-            b.click(result.position, result.player);
+            b.updateBoard(result.position, result.player);
         }
     });
 }
@@ -24,5 +24,7 @@ function done() {
 //app.listen(3000);
 //console.log('Listening on port 3000 via Express. Access via http://localhost:3000');
 b.init();
-prompt.start();
-getAnother();
+while (!b.isGameOver()) {
+    prompt.start();
+    getAnother();
+}

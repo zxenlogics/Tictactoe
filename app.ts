@@ -3,24 +3,38 @@ const prompt = require('prompt');
 
 let pos: string;
 let player: string;
- let b = new Board();
+let b = new Board();
+
+let promptProperties = [
+    {
+        name: 'position',
+        validator: /^[a-zA-Z\s\-]+$/,
+        warning: 'Invalid play position input'
+    },
+    {
+        name: 'player',
+        validator: /^[1,2]$/,
+        warning: 'Invalid user. Specify 1 or 2'
+    }
+];
 
 function getAnother() {
-    prompt.get(['position', 'player'], (err, result) => {
+    prompt.get(promptProperties, (err, result) => {
        
 
         if(err) {
-            done();
+            return onErr(err);
         }
         else {
             console.log(`You entered ${result.position} for player ${result.player}`);
-             b.click(result.position, result.player);
+             b.updateBoard(result.position, result.player);
         }
     });    
 }
 
-function done() {
-    console.log('Done');
+function onErr(err) {
+    console.log(`An error occured ${err}`);
+    return 1;
 }
 
 
@@ -35,7 +49,11 @@ function done() {
 
 
 b.init();
-prompt.start();
-getAnother();
+while(!b.isGameOver()){}
+
+    prompt.start();
+    getAnother();
+
+
 
 
