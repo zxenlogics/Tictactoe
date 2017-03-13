@@ -37,15 +37,12 @@ function onErr(err) {
     return 1;
 }
 
-//server.listen(3000);
 
-// Listen via Express
-//app.listen(3000);
-//console.log('Listening on port 3000 via Express. Access via http://localhost:3000');
 
 board.init();
 //while(!b.isGameOver()){}
 
+// Need to be ale to keep the app running to accept input. To be figured out
     prompt.start();
     getAnother();
 
