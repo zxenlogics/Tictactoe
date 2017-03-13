@@ -5,30 +5,31 @@ class Board {
     positions: string[] = ['-1', '-1', '-1',
                            '-1', '-1', '-1',
                            '-1', '-1', '-1',];
-   // mapping: Map<string, number> =  new Map<string, number>();
-    
-    
-    /**
-    {
-        "A1": 0, "A2": 1, "A3": 2,
-        "A4": 3, "A5": 4, "A6": 5,
-        "A17": 6, "A8": 7, "A9": 8,
-    }
-     */
+    mapping: object =         
+            {
+                'A1': 0, 'A2': 1, 'A3': 2,
+                'B1': 3, 'B2': 4, 'B3': 5,
+                'C1': 6, 'C2': 7, 'C3': 8,
+            };
+     
     
     init() : void  {        
         this.resetBoard();
-
-        //for(var i = 0; i < 9; i++) {
-          //  this.mapping.set(`A{i++}`, i);
-        //}
+        this.reset();
     }
 
-    reset = () => console.log('Reset Board');
+    reset = () => 
+    {
+        console.log('Reset Board');
+
+        for(var i = 0; i < 9; i++) {
+           this.positions[i] = '';
+        }
+    }
 
     click = (pos: string, player: string) => {
 
-            if(!this.mapping.has(pos)) {            
+            if(!this.mapping[pos] == null) {            
                 console.log(`Illegal Play position ${pos}`);
                 return;
             }
@@ -38,18 +39,19 @@ class Board {
                 return;
             }
 
-            let idx = <number>this.mapping.get(pos);
+            let idx = this.mapping[pos];
             this.positions[idx] = player;
 
             if(this.isGameOver(pos, player))
             {
                 this.endGame();
             }
+            this.drawBoard();
     }
 
     private isGameOver(pos: string, player: string) : boolean {
 
-        return true;
+        return false;
     }
 
     private getWinner() : number {
@@ -63,15 +65,15 @@ class Board {
     }
 
     private drawBoard() {
-        let a1 = this.mapping.get("A1");
+        let a1 = 'X';
 
         console.log('                     A   B   C');
         console.log('\n');
-        console.log(`                1    ${a1} | x | x`);
+        console.log(`                1    ${a1} |   |  `);
         console.log('                     ---------');
-        console.log('                2    0 | x | 0');
+        console.log('                2      |   |  ');
         console.log('                     ---------');
-        console.log('                3    x | x | x');
+        console.log('                3      |   |  ');
         console.log('\n');
     }
 

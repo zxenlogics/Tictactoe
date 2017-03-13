@@ -8,9 +8,19 @@ var Board = (function () {
         this.positions = ['-1', '-1', '-1',
             '-1', '-1', '-1',
             '-1', '-1', '-1',];
-        this.reset = function () { return console.log('Reset Board'); };
+        this.mapping = {
+            'A1': 0, 'A2': 1, 'A3': 2,
+            'B1': 3, 'B2': 4, 'B3': 5,
+            'C1': 6, 'C2': 7, 'C3': 8,
+        };
+        this.reset = function () {
+            console.log('Reset Board');
+            for (var i = 0; i < 9; i++) {
+                _this.positions[i] = '';
+            }
+        };
         this.click = function (pos, player) {
-            if (!_this.mapping.has(pos)) {
+            if (!_this.mapping[pos] == null) {
                 console.log("Illegal Play position " + pos);
                 return;
             }
@@ -18,29 +28,20 @@ var Board = (function () {
                 console.log("Invalid Player " + player);
                 return;
             }
-            var idx = _this.mapping.get(pos);
+            var idx = _this.mapping[pos];
             _this.positions[idx] = player;
             if (_this.isGameOver(pos, player)) {
                 _this.endGame();
             }
+            _this.drawBoard();
         };
     }
-    // mapping: Map<string, number> =  new Map<string, number>();
-    /**
-    {
-        "A1": 0, "A2": 1, "A3": 2,
-        "A4": 3, "A5": 4, "A6": 5,
-        "A17": 6, "A8": 7, "A9": 8,
-    }
-     */
     Board.prototype.init = function () {
         this.resetBoard();
-        //for(var i = 0; i < 9; i++) {
-        //  this.mapping.set(`A{i++}`, i);
-        //}
+        this.reset();
     };
     Board.prototype.isGameOver = function (pos, player) {
-        return true;
+        return false;
     };
     Board.prototype.getWinner = function () {
         return this.winner;
@@ -49,14 +50,14 @@ var Board = (function () {
         console.log("Game Over! Player  ");
     };
     Board.prototype.drawBoard = function () {
-        var a1 = this.mapping.get("A1");
+        var a1 = 'X';
         console.log('                     A   B   C');
         console.log('\n');
-        console.log("                1    " + a1 + " | x | x");
+        console.log("                1    " + a1 + " |   |  ");
         console.log('                     ---------');
-        console.log('                2    0 | x | 0');
+        console.log('                2      |   |  ');
         console.log('                     ---------');
-        console.log('                3    x | x | x');
+        console.log('                3      |   |  ');
         console.log('\n');
     };
     Board.prototype.resetBoard = function () {
