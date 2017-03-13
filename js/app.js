@@ -4,7 +4,7 @@ var board_1 = require("./board");
 var prompt = require('prompt');
 var pos;
 var player;
-var b = new board_1.Board();
+var board = new board_1.Board();
 var promptProperties = [
     {
         name: 'position',
@@ -21,8 +21,8 @@ function getAnother() {
             return onErr(err);
         }
         else {
-            console.log("You entered " + result.position + " for player " + result.player);
-            b.updateBoard(result.position, result.player);
+            //console.log(`You entered ${result.position} for player ${result.player}`);
+            board.update(result.position, result.player);
         }
     });
 }
@@ -34,7 +34,7 @@ function onErr(err) {
 // Listen via Express
 //app.listen(3000);
 //console.log('Listening on port 3000 via Express. Access via http://localhost:3000');
-b.init();
+board.init();
 //while(!b.isGameOver()){}
 prompt.start();
 getAnother();

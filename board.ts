@@ -1,8 +1,11 @@
 
 class Board {
-    numberOfPlayer: number = 2;
+
+    numberOfPlayers: number = 2;
     winner: number = 1;
     positionsFilled: number = 0;
+    playerBadge: object = { 1: 'X', 2: 'O' };
+
     positions: string[] = ['-1', '-1', '-1',
                            '-1', '-1', '-1',
                            '-1', '-1', '-1',];
@@ -12,8 +15,7 @@ class Board {
                 'B1': 3, 'B2': 4, 'B3': 5,
                 'C1': 6, 'C2': 7, 'C3': 8,
             };
-     playerBadge: object = { 1: 'X', 2: 'O' };
-    
+         
     init() : void  {        
         this.resetBoard();
         this.reset();
@@ -28,7 +30,7 @@ class Board {
         }
     }
 
-    updateBoard = (pos: string, player: number) => {
+    update = (pos: string, player: number) => {
 
         if(!this.isValidInput(pos.toLocaleUpperCase(), player))
         {
@@ -49,7 +51,7 @@ class Board {
     private isValidInput(pos: string, player: number) : boolean {
         let isValid = true;
 
-        if(!this.mapping[pos] == null) {            
+        if(this.mapping[pos] == null) {            
             console.log(`Illegal Play position ${pos}`);
             isValid = false;
         }

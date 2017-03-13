@@ -3,9 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Board = (function () {
     function Board() {
         var _this = this;
-        this.numberOfPlayer = 2;
-        this.winner = -1;
+        this.numberOfPlayers = 2;
+        this.winner = 1;
         this.positionsFilled = 0;
+        this.playerBadge = { 1: 'X', 2: 'O' };
         this.positions = ['-1', '-1', '-1',
             '-1', '-1', '-1',
             '-1', '-1', '-1',];
@@ -14,14 +15,13 @@ var Board = (function () {
             'B1': 3, 'B2': 4, 'B3': 5,
             'C1': 6, 'C2': 7, 'C3': 8,
         };
-        this.playerBadge = { 1: 'X', 2: 'O' };
         this.reset = function () {
             console.log('Resetting Board..');
             for (var i = 0; i < 9; i++) {
                 _this.positions[i] = ' ';
             }
         };
-        this.updateBoard = function (pos, player) {
+        this.update = function (pos, player) {
             if (!_this.isValidInput(pos.toLocaleUpperCase(), player)) {
                 return;
             }
@@ -40,7 +40,7 @@ var Board = (function () {
     };
     Board.prototype.isValidInput = function (pos, player) {
         var isValid = true;
-        if (!this.mapping[pos] == null) {
+        if (this.mapping[pos] == null) {
             console.log("Illegal Play position " + pos);
             isValid = false;
         }
@@ -63,11 +63,11 @@ var Board = (function () {
         var p = this.positions;
         console.log('                     1   2   3');
         console.log('\n');
-        console.log("                A    " + p[0] + " | " + p[1] + "  | " + p[2] + " ");
+        console.log("                A    " + p[0] + " | " + p[1] + " | " + p[2] + " ");
         console.log('                     ------------');
-        console.log("                B    " + p[3] + " | " + p[4] + "  | " + p[5] + " ");
+        console.log("                B    " + p[3] + " | " + p[4] + " | " + p[5] + " ");
         console.log('                     ------------');
-        console.log("                C    " + p[6] + " | " + p[7] + "  | " + p[8] + " ");
+        console.log("                C    " + p[6] + " | " + p[7] + " | " + p[8] + " ");
         console.log('\n');
     };
     Board.prototype.resetBoard = function () {

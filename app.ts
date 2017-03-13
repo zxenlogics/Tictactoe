@@ -3,7 +3,7 @@ const prompt = require('prompt');
 
 let pos: string;
 let player: string;
-let b = new Board();
+let board = new Board();
 
 let promptProperties = [
     {
@@ -26,8 +26,8 @@ function getAnother() {
             return onErr(err);
         }
         else {
-            console.log(`You entered ${result.position} for player ${result.player}`);
-             b.updateBoard(result.position, result.player);
+            //console.log(`You entered ${result.position} for player ${result.player}`);
+             board.update(result.position, result.player);
         }
     });    
 }
@@ -37,18 +37,13 @@ function onErr(err) {
     return 1;
 }
 
-
-
-
 //server.listen(3000);
 
 // Listen via Express
 //app.listen(3000);
 //console.log('Listening on port 3000 via Express. Access via http://localhost:3000');
 
-
-
-b.init();
+board.init();
 //while(!b.isGameOver()){}
 
     prompt.start();
