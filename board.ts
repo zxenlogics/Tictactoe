@@ -82,7 +82,6 @@ class Board {
     private drawBoard() {
         let p = this.positions;
         
-
         console.log('                     1   2   3');
         console.log('\n');
         console.log(`                A    ${p[0]} | ${p[1]} | ${p[2]} `);
