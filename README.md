@@ -12,4 +12,4 @@ Encapsulate the game logic in Javascript that can be used to build various versi
 * Node.js
 * Typescript
 * Bootstrap
-* Electron.io
+* Electron

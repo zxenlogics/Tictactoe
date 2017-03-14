@@ -2,14 +2,18 @@
   "name": "tictactoe",
   "version": "1.0.0",
   "description": "Tic Tac Toe game",
-  "main": "./js/app.js",
+  "main": "/js/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node ./js/app.js"
   },
   "author": "Denzil N. Brown",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^7.0.8",
     "typescript": "^2.2.1"
+  },
+  "dependencies": {
+    "prompt": "^1.0.0"
   }
 }
