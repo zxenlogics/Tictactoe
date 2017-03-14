@@ -13,3 +13,7 @@ Encapsulate the game logic in Javascript that can be used to build various versi
 * Typescript
 * Bootstrap
 * Electron
+
+
+##Picture of console board
+[board.png]
