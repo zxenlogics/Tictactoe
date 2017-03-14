@@ -1,5 +1,11 @@
+/// <reference path="../node_modules/@types/node/index.d.ts" />
+
+import * as readline from 'readline';
 import { Board } from "./board";
-const prompt = require('prompt');
+import * as prompt from 'prompt';
+
+//const prompt = require('prompt');
+
 
 let pos: string;
 let player: string;

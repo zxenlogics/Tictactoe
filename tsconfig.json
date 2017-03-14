@@ -7,7 +7,7 @@
         "outDir": "js"
     },
     "files": [
-        "board.ts",
-        "app.ts"
+        "./src/board.ts",
+        "./src/app.ts"
     ]
 }
