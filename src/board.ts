@@ -7,8 +7,8 @@ class Board {
     playerBadge: object = { 1: 'X', 2: 'O' };
 
     tiles: string[] = ['-1', '-1', '-1',
-                           '-1', '-1', '-1',
-                           '-1', '-1', '-1',];
+                       '-1', '-1', '-1',
+                       '-1', '-1', '-1',];
     mapping: object =         
             {
                 'A1': 0, 'A2': 1, 'A3': 2,
@@ -32,26 +32,21 @@ class Board {
 
     update = (pos: string, player: number) => {
 
-        if(!this.isValidInput(pos.toLocaleUpperCase(), player))
-        {
-            return;
-        }
+        // if(!this.isValidInput(pos.toLocaleUpperCase(), player))
+        // {
+        //     return;
+        // }
 
         let idx = this.mapping[pos.toUpperCase()];
         this.tiles[idx] = this.playerBadge[player];
-        this.positionsFilled++;
-
-        if(this.isGameOver())
-        {
-            this.endGame();
-        }
+        this.positionsFilled++;        
         this.drawBoard();
     }
 
     private isValidInput(pos: string, player: number) : boolean {
         let isValid = true;
 
-        if(this.mapping[pos] == null) {            
+        if(this.mapping[pos] == null || this.mapping[pos] !== ' ') {            
             console.log(`Illegal Play position ${pos}`);
             isValid = false;
         }
@@ -64,20 +59,20 @@ class Board {
         return isValid;
     }
 
-    isGameOver() : boolean {
+    // isGameOver() : boolean {
 
-        return this.positionsFilled == 9;
-    }
+    //     return this.positionsFilled == 9;
+    // }
 
-    private getWinner() : number {
+    // private getWinner() : number {
 
-        return this.winner;
-    }
+    //     return this.winner;
+    // }
 
-    private endGame() : void {
+    // private endGame() : void {
 
-        console.log(`Game Over! Player  `)
-    }
+    //     console.log(`Game Over! Player  `)
+    // }
 
     private drawBoard() {
         let p = this.tiles;

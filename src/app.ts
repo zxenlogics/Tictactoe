@@ -1,57 +1,40 @@
 /// <reference path="../node_modules/@types/node/index.d.ts" />
 
+//import { Board } from './board';
+import { GameController } from './gameController';
 import * as readline from 'readline';
-import { Board } from "./board";
-import * as prompt from 'prompt';
-
-//const prompt = require('prompt');
-
 
 let pos: string;
 let player: string;
-let board = new Board();
+//let board = new Board();
+let gameController = new GameController();
 
-let promptProperties = [
+//board.initialize();
+gameController.initialize();
+
+var r = readline.createInterface(process.stdin, process.stdout);
+//var r1 = readline.createInterface(process.stdin, process.stdout);
+
+console.log('Enter position and player e.g. for Tile B3 and Player 2 enter: B3 2');
+
+
+r.setPrompt('Enter your play >> ')
+r.prompt();
+r.on('line', line => {
+    let p = line.trim().split(' ');
+    let pos = p[0];
+    let player : number = <number> p[1];
+
+    if(p[0] == 'end'.toLowerCase())
     {
-        name: 'position',
-        //validator: /^[a-zA-Z\s\-]+$/,
-        //warning: 'Invalid play position input'
-    },
-    {
-        name: 'player',
-        validator: /^[1,2]$/,
-        warning: 'Invalid user. Specify 1 or 2'
+        r.close();
     }
-];
+    else {
+        console.log(`Tile: ${pos},  Player: ${player}`);
+        gameController.updateBoard(pos, player);
+        r.prompt();
+    }
 
-function getAnother() {
-    prompt.get(promptProperties, (err, result) => {
-       
-
-        if(err) {
-            return onErr(err);
-        }
-        else {
-            //console.log(`You entered ${result.position} for player ${result.player}`);
-             board.update(result.position, result.player);
-        }
-    });    
-}
-
-function onErr(err) {
-    console.log(`An error occured ${err}`);
-    return 1;
-}
-
-
-
-board.initialize();
-//while(!b.isGameOver()){}
-
-// Need to be ale to keep the app running to accept input. To be figured out
-    prompt.start();
-    getAnother();
-
-
-
-
+}).on('close', _ => {
+    process.exit(0);
+});
