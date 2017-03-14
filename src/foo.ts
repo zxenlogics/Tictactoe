@@ -15,7 +15,7 @@ var r = readline.createInterface(process.stdin, process.stdout);
 console.log('Enter position and player e.g. for Tile B3 and Player 2 enter: B3 2');
 
 
-r.setPrompt('Enter you play >> ')
+r.setPrompt('Enter your play >> ')
 r.prompt();
 r.on('line', line => {
     let p = line.trim().split(' ');
