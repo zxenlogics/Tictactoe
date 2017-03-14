@@ -39,7 +39,7 @@ function onErr(err) {
 
 
 
-board.init();
+board.initialize();
 //while(!b.isGameOver()){}
 
 // Need to be ale to keep the app running to accept input. To be figured out

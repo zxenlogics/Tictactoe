@@ -6,7 +6,7 @@ class Board {
     positionsFilled: number = 0;
     playerBadge: object = { 1: 'X', 2: 'O' };
 
-    positions: string[] = ['-1', '-1', '-1',
+    tiles: string[] = ['-1', '-1', '-1',
                            '-1', '-1', '-1',
                            '-1', '-1', '-1',];
     mapping: object =         
@@ -16,7 +16,7 @@ class Board {
                 'C1': 6, 'C2': 7, 'C3': 8,
             };
          
-    init() : void  {        
+    initialize() : void  {        
         this.resetBoard();
         this.reset();
     }
@@ -26,7 +26,7 @@ class Board {
         console.log('Resetting Board..');
 
         for(var i = 0; i < 9; i++) {
-           this.positions[i] = ' ';
+           this.tiles[i] = ' ';
         }
     }
 
@@ -38,7 +38,7 @@ class Board {
         }
 
         let idx = this.mapping[pos.toUpperCase()];
-        this.positions[idx] = this.playerBadge[player];
+        this.tiles[idx] = this.playerBadge[player];
         this.positionsFilled++;
 
         if(this.isGameOver())
@@ -80,7 +80,7 @@ class Board {
     }
 
     private drawBoard() {
-        let p = this.positions;
+        let p = this.tiles;
         
         console.log('                     1   2   3');
         console.log('\n');
