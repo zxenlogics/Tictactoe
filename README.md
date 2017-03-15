@@ -16,4 +16,4 @@ Encapsulate the game logic in Javascript that can be used to build various versi
 
 
 ## Picture of console board
-[board.png]
+![alt text](https://github.com/zxenlogics/Tictactoe/blob/master/board.png "Image of board")
