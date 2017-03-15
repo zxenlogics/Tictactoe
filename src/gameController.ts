@@ -53,7 +53,7 @@ export class GameController {
             isValid = false;
         }
 
-        if(this.board.mapping[pos] == null || this.board.mapping[pos] !== ' ') {            
+        if(this.board.Mapping[pos] == null || this.board.Mapping[pos] !== ' ') {            
             console.log(`Illegal Play position ${pos}`);
             isValid = false;
         }

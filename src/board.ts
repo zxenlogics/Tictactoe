@@ -1,8 +1,8 @@
 
-class Board {
+export class Board {
 
     numberOfPlayers: number = 2;
-    winner: number = 1;
+    //winner: number = 1;
     positionsFilled: number = 0;
     playerBadge: object = { 1: 'X', 2: 'O' };
 
@@ -15,6 +15,10 @@ class Board {
                 'B1': 3, 'B2': 4, 'B3': 5,
                 'C1': 6, 'C2': 7, 'C3': 8,
             };
+
+    get Mapping() {
+        return this.mapping;
+    }
          
     initialize() : void  {        
         this.resetBoard();
@@ -23,7 +27,7 @@ class Board {
 
     reset = () => 
     {
-        console.log('Resetting Board..');
+        //console.log('Resetting Board..');
 
         for(var i = 0; i < 9; i++) {
            this.tiles[i] = ' ';
@@ -43,21 +47,21 @@ class Board {
         this.drawBoard();
     }
 
-    private isValidInput(pos: string, player: number) : boolean {
-        let isValid = true;
+    // private isValidInput(pos: string, player: number) : boolean {
+    //     let isValid = true;
 
-        if(this.mapping[pos] == null || this.mapping[pos] !== ' ') {            
-            console.log(`Illegal Play position ${pos}`);
-            isValid = false;
-        }
+    //     if(this.mapping[pos] == null || this.mapping[pos] !== ' ') {            
+    //         console.log(`Illegal Play position ${pos}`);
+    //         isValid = false;
+    //     }
 
-        if(player < 1 && player > 2) {
-            console.log(`Invalid Player ${player}. Please enter 1 or 1`);
-            isValid = false;
-        }
+    //     if(player < 1 && player > 2) {
+    //         console.log(`Invalid Player ${player}. Please enter 1 or 1`);
+    //         isValid = false;
+    //     }
 
-        return isValid;
-    }
+    //     return isValid;
+    // }
 
     // isGameOver() : boolean {
 
@@ -99,5 +103,3 @@ class Board {
     }    
     
 }
-
-export { Board }
