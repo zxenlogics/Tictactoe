@@ -6,17 +6,17 @@ export class Board {
     positionsFilled: number = 0;
     playerBadge: object = { 1: 'X', 2: 'O' };
 
-    tiles: string[] = ['-1', '-1', '-1',
-                       '-1', '-1', '-1',
-                       '-1', '-1', '-1',];
-    mapping: object =         
+    tiles: string[] = ['-', '-', '-',
+                       '-', '-', '-',
+                       '-', '-', '-',];
+    mapping: {[id: string] : number} =         
             {
                 'A1': 0, 'A2': 1, 'A3': 2,
                 'B1': 3, 'B2': 4, 'B3': 5,
                 'C1': 6, 'C2': 7, 'C3': 8,
             };
 
-    get Mapping() {
+    get Mapping() : {[id: string] : number} {
         return this.mapping;
     }
          
@@ -47,6 +47,10 @@ export class Board {
         this.drawBoard();
     }
 
+    isValidTile(pos: string) : boolean {
+        return (pos in this.Mapping);
+    }
+    
     // private isValidInput(pos: string, player: number) : boolean {
     //     let isValid = true;
 
@@ -89,6 +93,7 @@ export class Board {
         console.log('                     ------------');
         console.log(`                C    ${p[6]} | ${p[7]} | ${p[8]} `);
         console.log('\n');
+        console.log(this.mapping);
     }
 
     private resetBoard() {       

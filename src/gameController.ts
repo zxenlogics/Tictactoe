@@ -49,17 +49,17 @@ export class GameController {
 
         if(pos === undefined && pos.length < 1)
         {
-            console.log('Tile position is reqired');
+            console.log('[GC] Tile position is reqired');
             isValid = false;
         }
 
-        if(this.board.Mapping[pos] == null || this.board.Mapping[pos] !== ' ') {            
-            console.log(`Illegal Play position ${pos}`);
+        if(!this.board.isValidTile(pos)) {             
+            console.log(`[GC] Illegal Play position ${pos} >> board.Mapping[${pos}] = ${this.board.Mapping[pos]}`);
             isValid = false;
         }
 
-        if(player < 1 && player > 2) {
-            console.log(`Invalid Player ${player}. Please enter 1 or 1`);
+        if(player < 1 || player > 2) {
+            console.log(`[GC] Invalid Player ${player}. Please enter 1 or 2`);
             isValid = false;
         }
 
@@ -78,7 +78,7 @@ export class GameController {
 
     private endGame() : void {
 
-        console.log(`Game Over! Player  `)
+        console.log(`[GC]Game Over! Player  `)
     }    
 
 }

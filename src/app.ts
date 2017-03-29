@@ -4,8 +4,8 @@
 import { GameController } from './gameController';
 import * as readline from 'readline';
 
-let pos: string;
-let player: string;
+//let pos: string;
+//let player: string;
 //let board = new Board();
 let gameController = new GameController();
 
@@ -22,15 +22,17 @@ r.setPrompt('Enter your play >> ')
 r.prompt();
 r.on('line', line => {
     let p = line.trim().split(' ');
+    //console.log(`line = ${line}, p = ${p}`);
     let pos = p[0];
     let player : number = <number> p[1];
+    //console.log(`p = ${p}, pos = ${pos}, player = ${player}`);
 
-    if(p[0] == 'end'.toLowerCase())
+    if(p[0] === 'quit'.toLowerCase())
     {
         r.close();
     }
     else {
-        console.log(`Tile: ${pos},  Player: ${player}`);
+        //console.log(`Tile: ${pos},  Player: ${player}`);
         gameController.updateBoard(pos, player);
         r.prompt();
     }
